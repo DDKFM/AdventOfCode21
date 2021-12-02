@@ -1,7 +1,6 @@
 package de.ddkfm
 
 import java.io.File
-import de.ddkfm.DayInterface
 
 enum class CommandType {
     FORWARD,
@@ -24,12 +23,9 @@ data class Command(
         }
     }
 }
-class Day2 : DayInterface<File, Int> {
-    override fun getInput(): File {
-        return File(ClassLoader.getSystemResource("Day2.txt").file)
-    }
-    override fun check(inputFile: File): Int {
-        return inputFile.readLines()
+class Day2 : DayInterface<List<String>, Int> {
+    override fun part1(input: List<String>): Int {
+        return input
             .map { Command(CommandType.parse(it.split(" ")[0]), it.split(" ")[1].toInt()) }
             .groupBy { when(it.type) {
                 CommandType.FORWARD -> "horizontal"
@@ -41,11 +37,11 @@ class Day2 : DayInterface<File, Int> {
             .reduce{acc, i -> acc * i }
     }
 
-    override fun check2(inputFile: File): Int {
+    override fun part2(input: List<String>): Int {
         var aim = 0;
         var depth = 0;
         var horizontal = 0;
-        val commands = inputFile.readLines()
+        val commands = input
             .map { Command(CommandType.parse(it.split(" ")[0]), it.split(" ")[1].toInt()) }
         commands.forEach { command ->
             when(command.type) {
