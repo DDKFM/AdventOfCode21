@@ -61,4 +61,19 @@ class AdventOfCodeTests {
             assertEquals(4856080, part2(input))
         }
     }
+
+    @Test
+    fun day4() {
+
+        withDay(Day4()) {
+            val example = getExampleFile("day4").readLines()
+            val input = getInputFile("day4").readLines()
+
+            assertEquals(4512, part1(example))
+            assertEquals(10374, part1(input))
+
+            assertEquals(1924, part2(example))
+            assertEquals(24742, part2(input))
+        }
+    }
 }
